@@ -14,8 +14,25 @@ public class Intersection {
     owner = null;
     isCity = false;
   }
+  
+  public void upgrade() {
+    isCity = true;
+  }
 
   public String getKey() {
     return key;
   }
+  
+  public Player getOwner() {
+    return owner;
+  }
+  
+  public boolean isCity() {
+    return isCity;
+  }
+  
+  public void setOwner(Player p) {
+    owner = p;
+  }
+  
 }

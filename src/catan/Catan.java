@@ -6,6 +6,7 @@ import java.util.List;
 import java.util.Random;
 
 import entities.*;
+import exceptions.WrongOwnerException;
 
 public class Catan {
   private static ArrayList<Tile> land_tiles = new ArrayList<Tile>();
@@ -123,10 +124,26 @@ public class Catan {
       }
     }
   }
-  
+
   public static void place_road(Border b, Player p) {
-    if(b.getOwner() == null) {
+    if (b.getOwner() == null) {
       b.setOwner(p);
+    }
+  }
+
+  public static void place_settlement(Intersection i, Player p) {
+    if (i.getOwner() == null) {
+      i.setOwner(p);
+    }
+  }
+
+  public static void upgrade_settlement(Intersection i, Player p) throws WrongOwnerException {
+    if (i.getOwner() == p) {
+      if (!i.isCity()) {
+        i.upgrade();
+      }
+    } else {
+      throw new WrongOwnerException();
     }
   }
 
